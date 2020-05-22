@@ -1,0 +1,11 @@
+body, body * {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+section {
+  padding: 1em;
+  background-color: rgb(240,240,240);
+  width: 90%;
+  margin: 1em auto;
+}

@@ -1,0 +1,67 @@
+<html>
+  <head>
+    <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <link type="text/css" rel="stylesheet" href="/css/loading.css">
+    <link type="text/css" rel="stylesheet" href="/css/clock.css">
+    <link type="text/css" rel="stylesheet" href="/css/drawing.css">
+    <script src="https://kit.fontawesome.com/4849833081.js" crossorigin="anonymous"></script>
+  </head>
+  <body>
+    <section>
+      <h2>Loading circle</h2>
+      <h4>CSS Animations</h4>
+      <div class="spinning-circle-container">
+        <div class="spinning-circle"></div>
+      </div>
+    </section>
+    <section>
+      <h2>Real-Time Clock</h2>
+      <h4>Javascript, CSS Transformations</h4>
+      <div class="clock-container">
+        <div class="clock">
+          <div class="clock-hand clock-hand-hour">
+            <div class="clock-hand-colored"></div>
+            <div class="clock-hand-uncolored"></div>
+          </div>
+          <div class="clock-hand clock-hand-minute">
+            <div class="clock-hand-colored"></div>
+            <div class="clock-hand-uncolored"></div>
+          </div>
+          <div class="clock-hand clock-hand-second">
+            <div class="clock-hand-colored"></div>
+            <div class="clock-hand-uncolored"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section>
+      <h2>Drawing Pad</h2>
+      <h4>HTML Canvas API, Javascript</h4>
+      <div id="drawing-interface">
+        <canvas id="drawing-canvas"></canvas>
+        <div id="drawing-interface-menu" class="drawing-interface-menu-keep-open">
+          <i id="drawing-menu" class="fas fa-bars drawing-interface-menu-button drawing-interface-menu-keep-open">Menu</i
+          ><i id="drawing-undo" class="fas fa-undo-alt drawing-interface-menu-button drawing-interface-menu-keep-open" onclick="drawing.undo();">Undo</i
+          ><i id="drawing-redo" class="fas fa-redo-alt drawing-interface-menu-button drawing-interface-menu-keep-open" onclick="drawing.redo();">Redo</i
+          ><i id="drawing-clear" class="fas fa-eraser drawing-interface-menu-button drawing-interface-menu-keep-open" onclick="drawing.clear();">Clear</i
+          ><div id="drawing-interface-menu-edit" class="drawing-interface-menu-keep-open">
+            <input id="drawing-size-input" type="range" min="1" max="100" value="1" class="drawing-interface-menu-edit-button drawing-interface-menu-keep-open"></input
+            ><div id="drawing-size-circle" class="drawing-interface-menu-button drawing-interface-menu-edit-button drawing-interface-menu-keep-open"></div
+            ><div id="color-picker-container">
+              <canvas id="color-picker-canvas" class="drawing-interface-menu-keep-open" width="1536" height = "100"></canvas>
+            </div
+            ><i id="drawing-color-primary" class="fas fa-pen drawing-interface-menu-button drawing-interface-menu-edit-button drawing-interface-menu-keep-open" onclick="drawing.undo();">Color</i
+            ><i id="drawing-color-secondary" class="fas fa-pen drawing-interface-menu-button drawing-interface-menu-edit-button drawing-interface-menu-keep-open" onclick="drawing.undo();">Color</i>
+          </div>
+        </div>
+        <div id="drawing-instructions-overlay">
+          <i class="fas fa-arrow-up drawing-instructions-arrow" aria-hidden="true"></i>
+          <p class="drawing-instructions">Hover over the top to display the menu!</p>
+        </div>
+      </div>
+    </section>
+    <div id="color-picker-display" class="drawing-interface-menu-keep-open"></div>
+  </body>
+  <script src="/js/clock.js"></script>
+  <script src="/js/drawing.js"></script>
+</html>

@@ -1,0 +1,115 @@
+#drawing-canvas {
+  border: 1px solid lightgray;
+  background-color: lightyellow;
+  cursor: crosshair;
+}
+
+#drawing-interface {
+  position: relative;
+  display: inline-block;
+  overflow-y: hidden;
+}
+
+#drawing-interface-menu {
+  position: absolute;
+  top: 0;
+  padding: 0.5em;
+  background-color: rgb(138, 80, 37);
+  width: 100%;
+  transform: translateY(-100%);
+  transition: transform 0.25s linear;
+}
+
+#drawing-interface-menu.open {
+  transform: translateY(0);
+}
+
+.drawing-interface-menu-button {
+  background-color: rgb(240,240,240);
+  padding: 0.25em;
+  border: 1px solid gray;
+  border-radius: 0.25em;
+  margin: 0 0.25em;
+  cursor: pointer;
+}
+
+#drawing-size-input {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: rgb(225, 225, 225);
+  border-radius: 10px;
+  height: 5px;
+  outline: none;
+}
+
+#drawing-size-input::-moz-range-thumb {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: rgb(200, 200, 200);
+}
+
+.drawing-interface-menu-button-disabled {
+  color: lightgray;
+  background-color: white;
+}
+
+#drawing-size-circle {
+  display: inline-block;
+  border-radius: 50%;
+  width: 1px;
+  height: 1px;
+  background-color: rgb(240,240,240);
+  padding: 0;
+  border: none;
+}
+
+#drawing-instructions-overlay {
+  font-family: sans-serif;
+  font-weight: bold;
+  color: white;
+  background-color: rgba(0,0,0,0.7);
+  border-radius: 2em;
+  position: absolute;
+  top: 0;
+  left: 15%;
+  width: 70%;
+  height: 50%;
+  margin: 3em auto;
+  text-align: center;
+  padding: 1em 5em;
+  opacity: 1;
+  transition: opacity 0.5s 0.5s;
+  animation: drawing-instructions 5s infinite linear;
+}
+
+@keyframes drawing-instructions {
+  0% {transform: translateY(0);}
+  25% {transform: translateY(-5%);}
+  50% {transform: translateY(0);}
+  75% {transform: translateY(5%);}
+  100% {transform: translateY(0);}
+}
+
+#color-picker-container {
+  display: inline-block;
+}
+
+#color-picker-canvas {
+  width: 100px;
+  height: 25px;
+  background-color: gray;
+  cursor: pointer;
+}
+
+#color-picker-display {
+  position: absolute;
+  display: none;
+  width: 16px;
+  height: 16px;
+  background-color: lightgray;
+  border: 1px solid white;
+  border-radius: 50%;
+}

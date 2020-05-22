@@ -1,0 +1,22 @@
+@keyframes circle-spin {
+  0% {transform: rotate(0);}
+  100% {transform: rotate(360deg);}
+}
+
+.spinning-circle-container {
+  background-color: rgb(50,50,50);
+  padding: 2em;
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.spinning-circle {
+  display: inline-block;
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: 12px solid black;
+  border-top-color: darkgreen;
+  border-right-color: green;
+  animation: circle-spin 0.5s linear infinite normal both;
+}

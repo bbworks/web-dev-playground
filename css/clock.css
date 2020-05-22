@@ -1,0 +1,49 @@
+.clock {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  border: 0.25em solid rgb(50,50,50);
+  border-radius: 50%;
+  background-color: white;
+}
+
+.clock-hand {
+  position: absolute;
+  left: calc(50% - 0.25em);
+  width: 0.5em;
+  height: 100%;
+}
+
+.clock-hand-colored {
+  position: relative;
+  width: 100%;
+  border-radius: 0.25em;
+}
+
+.clock-hand-hour .clock-hand-colored {
+  top: 15%;
+  height: 35%;
+  background-color: black;
+}
+
+.clock-hand-minute .clock-hand-colored {
+  top: 5%;
+  height: 45%;
+  background-color: rgb(50,50,50);
+}
+
+.clock-hand-second .clock-hand-colored {
+  top: 0;
+  height: 50%;
+  background-color: red;
+}
+
+.clock-hand-second {
+  width: 0.25em;
+  left: calc(50% - 0.125em);
+}
+
+.clock-hand-uncolored {
+  width: 100%;
+  height: 50%;
+}
