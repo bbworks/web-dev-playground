@@ -1,6 +1,7 @@
 #drawing-canvas {
   border: 1px solid lightgray;
   background-color: lightyellow;
+  background-image: linear-gradient(rgb(255, 232, 120) 0%, lightyellow 20%, rgb(255, 232, 120) 200%);
   cursor: crosshair;
 }
 
@@ -15,6 +16,7 @@
   top: 0;
   padding: 0.5em;
   background-color: rgb(138, 80, 37);
+  background-image: linear-gradient(rgb(89, 51, 24), rgb(138, 80, 37));
   width: 100%;
   transform: translateY(-100%);
   transition: transform 0.25s linear;
@@ -22,6 +24,10 @@
 
 #drawing-interface-menu.open {
   transform: translateY(0);
+}
+
+#drawing-interface-menu-edit {
+  padding: 0.5em 0;
 }
 
 .drawing-interface-menu-button {

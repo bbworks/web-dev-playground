@@ -1,11 +1,36 @@
+body {
+  background-color: white;;
+}
+
 body, body * {
   box-sizing: border-box;
   margin: 0;
+  font-family: sans-serif;
 }
 
-section {
-  padding: 1em;
+.playground-section {
   background-color: rgb(240,240,240);
   width: 90%;
+  padding: 0.5em;
   margin: 1em auto;
+}
+
+.playground-title-container {
+  background-color: rgb(225,225,225);
+  border-radius: 0.5em;
+  padding: 0.5em 0.5em;
+}
+
+.playground-title {
+  font-size: 2em;
+  font-family: sans-serif;
+}
+
+.playground-type {
+  font-style: italic;
+  padding-left: 0.5em;
+}
+
+.playground-content {
+  padding: 0.5em 0;
 }

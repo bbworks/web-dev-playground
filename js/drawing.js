@@ -38,6 +38,7 @@
         const x = event.offsetX;
         const y = event.offsetY;
 
+        drawingCanvasContext.beginPath();
         drawingCanvasContext.moveTo(x, y);
         touch = points.length;
         points[touch] = {
@@ -49,7 +50,6 @@
           points: [],
         };
         undos = [];
-        console.log(points[touch])
       }
       else {
         drawingMouseDown = false;
@@ -239,7 +239,7 @@
         drawingCanvasContext.lineTo(popped.points[i][0], popped.points[i][1]);
         drawingCanvasContext.stroke();
       }
-      
+
       //Set the context back to where we were
       drawingCanvasContext.strokeStyle = metadataSave.color;
       drawingCanvasContext.lineWidth = metadataSave.width;
