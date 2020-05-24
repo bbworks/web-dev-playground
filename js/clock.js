@@ -47,13 +47,6 @@
     const func = "get"+handObject.name.replace(/(\w)/,getUpper)+"s";
     handObject.value = date[func]();
 
-    //If we hit 0 (i.e. a full cycle),
-    // increment so we keep our degrees going PAST 360,
-    // as this makes for a smooth CSS transition in one direction
-    if (handObject.value === 0) {
-      handObject.increment++;
-    }
-
     //Now, also add the small increments on our hour/minute handObject,
     // and update the digital clock
     switch (handObject.name)
@@ -71,6 +64,14 @@
         break;
       }
     };
+
+    //If we hit 0 (i.e. a full cycle),
+    // increment so we keep our degrees going PAST 360,
+    // as this makes for a smooth CSS transition in one direction
+    // NOTE: Do this AFTER we add the seconds fraction
+    if (handObject.value === 0) {
+      handObject.increment++;
+    }
 
     //Calcualte the number of degrees for this handObject
     handObject.degrees = (handObject.value + (handObject.increment * handObject.total)) / handObject.total * 360;

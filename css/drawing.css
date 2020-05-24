@@ -3,6 +3,7 @@
   background-color: lightyellow;
   background-image: linear-gradient(rgb(255, 232, 120) 0%, lightyellow 20%, rgb(255, 232, 120) 200%);
   cursor: crosshair;
+  display: block;
 }
 
 #drawing-interface {
@@ -85,10 +86,32 @@
   height: 50%;
   margin: 3em auto;
   text-align: center;
-  padding: 1em 5em;
+  padding: 2em 5em;
   opacity: 1;
   transition: opacity 0.5s 0.5s;
   animation: drawing-instructions 5s infinite linear;
+}
+
+@media screen and (max-width: 600px) {
+  #drawing-instructions-overlay {
+    font-size: 0.8rem;
+    padding: 1em 2em;
+  }
+}
+
+#drawing-instructions-touch{
+  display: none;
+}
+
+#drawing-interface-menu-touch-button {
+  display: none;
+  position: absolute;
+  top: 0;
+  right: 0;
+  background: none;
+  border: none;
+  font-size: 1em;
+  padding: 0.5em;
 }
 
 @keyframes drawing-instructions {

@@ -6,7 +6,7 @@
   const drawingCanvas = document.getElementById("drawing-canvas");
   const drawingCanvasContext = drawingCanvas.getContext("2d");
   drawingCanvas.width = 500;
-  drawingCanvas.height = 200;
+  drawingCanvas.height = drawingCanvas.width/2;
   drawingCanvasContext.fillStyle = "black";
 
   const drawingMenu = document.getElementById("drawing-interface-menu");
@@ -15,6 +15,7 @@
   const drawingSizeCircle = document.getElementById("drawing-size-circle");
   const colorPickerCanvas = document.getElementById("color-picker-canvas");
   const colorPickerDisplay = document.getElementById("color-picker-display");
+  const drawingMenuTouchButton = document.getElementById("drawing-interface-menu-touch-button");
 
   const drawingMenuOpenClassName = "open";
 
@@ -28,22 +29,65 @@
   const numberOfColorSequences = 6;
   const colorSequenceLength = totalNumberOfColors/numberOfColorSequences;
 
+  //Let's make a standard for our events
+  const EVENT_TYPE = {
+    down: 0,
+    up: 1,
+  };
+
+  const getEventDownUp = function(event) {
+    if (event.type === "mousedown" || event.type === "touchstart") {
+      return 0;
+    }
+    else if (event.type === "mouseup" || event.type === "touchend") {
+      return 1;
+    }
+  };
+
+  //Create a reusable way to return the mouse/touch x y point
+  const getMouseOrTouch = function(event) {
+    if (event.type.match("mouse")) {
+      return "mouse";
+    }
+    else if (event.type.match("touch")) {
+      return "touch";
+    }
+    return false;
+  };
+
+  //Let's create some mouse/touch helper functions
+  const getOffsetXY = function(event, canvas) {
+    const mouseOrTouch = getMouseOrTouch(event);
+    const canvasRect = canvas.getBoundingClientRect();
+    return {
+      x: (mouseOrTouch === "mouse" ? event.offsetX : (mouseOrTouch === "touch" ? event.touches[0].clientX - canvasRect.x : null)),
+      y: (mouseOrTouch === "mouse" ? event.offsetY : (mouseOrTouch === "touch" ? event.touches[0].clientY - canvasRect.y : null)),
+    }
+  };
+
+  const getPageXY = function(event) {
+    const mouseOrTouch = getMouseOrTouch(event);
+    return {
+      x: (mouseOrTouch === "mouse" ? event.pageX : (mouseOrTouch === "touch" ? event.touches[0].pageX : null)),
+      y: (mouseOrTouch === "mouse" ? event.pageY : (mouseOrTouch === "touch" ? event.touches[0].pageY : null)),
+    }
+  };
+
   //Set up a listener for the pen down and up
   const handleDrawingOnMouseDownUp = function(event) {
     //Don't do anything unless we're touching our canvas
     if (event.srcElement === drawingCanvas) {
       //IF we're putting the pen down, set our starting point
-      if (event.type === "mousedown") {
+      if (getEventDownUp(event) === EVENT_TYPE.down) {
         drawingMouseDown = true;
-        const x = event.offsetX;
-        const y = event.offsetY;
+        const point = getOffsetXY(event, drawingCanvas);
 
         drawingCanvasContext.beginPath();
-        drawingCanvasContext.moveTo(x, y);
+        drawingCanvasContext.moveTo(point.x, point.y);
         touch = points.length;
         points[touch] = {
           metadata: {
-            initialPoint: [x, y],
+            initialPoint: [point.x, point.y],
             color: drawingCanvasContext.strokeStyle,
             width: drawingCanvasContext.lineWidth,
           },
@@ -51,44 +95,64 @@
         };
         undos = [];
       }
-      else {
+      else if (getEventDownUp(event) === EVENT_TYPE.up) {
         drawingMouseDown = false;
         checkButtonDisable("drawing-undo");
         checkButtonDisable("drawing-redo");
       }
 
       //Either add or remove the pen drawing listener, depending on the pen coming down or up
-      const func = (event.type === "mousedown" ? "add" : (event.type === "mouseup" ? "remove" : null));
-      window[func+"EventListener"]("mousemove", handleDrawingOnMouseMove);
+      const func = (getEventDownUp(event) === EVENT_TYPE.down ? "add" : (getEventDownUp(event) === EVENT_TYPE.up ? "remove" : null));
+      window[func+"EventListener"](getMouseOrTouch(event)+"move", handleDrawingOnMouseMove);
     }
   };
 
   //Set up a listener for the pen moving while down
   const handleDrawingOnMouseMove = function(event) {
-    const x = event.offsetX;
-    const y = event.offsetY;
-
-    points[touch].points.push([x, y]);
-    drawingCanvasContext.lineTo(x, y);
+    const point = getOffsetXY(event, drawingCanvas);
+    points[touch].points.push(point.x, point.y);
+    drawingCanvasContext.lineTo(point.x, point.y);
     drawingCanvasContext.stroke();
   };
 
   //Slide menu open if our mouse is depressed and in the top 10 pixels of our canvas
   const handleMenuOpenOnMouseMove = function(event) {
-    const drawingCanvasRect = drawingCanvas.getBoundingClientRect();
-    const isWithinBoundary = (
-      (event.clientY >= drawingCanvasRect.y) &&
-      (event.clientX >= drawingCanvasRect.x) &&
-      (event.clientY <= drawingCanvasRect.y + 10) &&
-      (event.clientX <= drawingCanvasRect.x + drawingCanvasRect.width)
-    );
-    if (!drawingMouseDown && isWithinBoundary && !drawingMenu.classList.contains(drawingMenuOpenClassName)) {
+    let hideInstructions = true;
+    const openMenu = function() {
       drawingMenu.classList.add(drawingMenuOpenClassName);
-      drawingInstructions.style.opacity = 0;
-      window.setTimeout(()=>{drawingInstructions.style.display = "none";}, 1000);
-    }
-    else if (!isWithinBoundary && drawingMenu.classList.contains(drawingMenuOpenClassName) && !event.srcElement.classList.contains("drawing-interface-menu-keep-open")) {
+      if (hideInstructions) {
+        drawingInstructions.style.opacity = 0;
+        window.setTimeout(()=>{drawingInstructions.style.display = "none";}, 1000);
+        hideInstruction = false;
+      }
+    };
+    const closeMenu = function() {
       drawingMenu.classList.remove(drawingMenuOpenClassName);
+    };
+
+    event.preventDefault();
+
+    if (event.type === "click" && event.srcElement === drawingMenuTouchButton) {
+      if (!drawingMenu.classList.contains(drawingMenuOpenClassName)) {
+        openMenu();
+      } else {
+        closeMenu();
+      }
+    }
+    else {
+      const drawingCanvasRect = drawingCanvas.getBoundingClientRect();
+      const isWithinBoundary = (
+        (event.clientY >= drawingCanvasRect.y) &&
+        (event.clientX >= drawingCanvasRect.x) &&
+        (event.clientY <= drawingCanvasRect.y + 10) &&
+        (event.clientX <= drawingCanvasRect.x + drawingCanvasRect.width)
+      );
+      if (!drawingMouseDown && isWithinBoundary && !drawingMenu.classList.contains(drawingMenuOpenClassName)) {
+        openMenu();
+      }
+      else if (!isWithinBoundary && drawingMenu.classList.contains(drawingMenuOpenClassName) && !event.srcElement.classList.contains("drawing-interface-menu-keep-open")) {
+        closeMenu();
+      }
     }
   };
 
@@ -161,10 +225,12 @@
   };
 
   const handleColorPickerCanvasOnMouseDownUp = function(event) {
-    if (event.type === "mousedown") {
+    event.preventDefault();
+
+    if (getEventDownUp(event) === EVENT_TYPE.down) {
       colorPickerMouseDown = true;
     }
-    else if (event.type === "mouseup") {
+    else if (getEventDownUp(event) === EVENT_TYPE.up) {
       colorPickerMouseDown = false;
     }
 
@@ -172,14 +238,15 @@
       //Display the color picker display with the
       // correct color, in the correct position
       const colorPickerCanvasWidth = colorPickerCanvas.getBoundingClientRect().width;
-      const value = Math.floor((event.offsetX < 0 ? 0 : (event.offsetX > totalNumberOfColors ? totalNumberOfColors : event.offsetX)) / colorPickerCanvasWidth * totalNumberOfColors);
+      const x = getOffsetXY(event, colorPickerCanvas).x;
+      const value = Math.floor((x < 0 ? 0 : (x > totalNumberOfColors ? totalNumberOfColors : x)) / colorPickerCanvasWidth * totalNumberOfColors);
       const color = getColorFromValue(value);
-      const colorPickerDisplayOffset = 5; //px
+      const colorPickerDisplayOffset = (getMouseOrTouch(event) === "mouse" ? 5 : 20); //px
       drawingSizeCircle.style.backgroundColor = color;
       colorPickerDisplay.style.backgroundColor = color;
       colorPickerDisplay.style.display = "block";
-      colorPickerDisplay.style.top = event.pageY-colorPickerDisplayOffset+"px";
-      colorPickerDisplay.style.left = event.pageX+colorPickerDisplayOffset+"px";
+      colorPickerDisplay.style.top = getPageXY(event).y-colorPickerDisplayOffset+"px";
+      colorPickerDisplay.style.left = getPageXY(event).x+colorPickerDisplayOffset+"px";
 
       drawingCanvasContext.beginPath();
       drawingCanvasContext.strokeStyle = color;
@@ -187,6 +254,40 @@
     else {
       colorPickerDisplay.style.display = "none";
     }
+  };
+
+  const checkIsTouchable = function() {
+    try {
+	    document.createEvent("TouchEvent");
+	    return true;
+	  } catch (exception) {
+	    return false;
+	  }
+  };
+
+  const isTouchableInit = function() {
+    drawingMenuTouchButton.style.display = "block";
+    document.getElementById("drawing-instructions-mouse").style.display = "none";
+    document.getElementById("drawing-instructions-touch").style.display = "block";
+  };
+
+  const handleOnResize = function(event) {
+    let height;
+    if (window.matchMedia("(min-width: 1200px)").matches) {
+      height = 1000;
+    }
+    else if (window.matchMedia("(min-width: 768px)").matches) {
+      height = 700;
+    }
+    else if (window.matchMedia("(min-width: 600px)").matches) {
+      height = 500;
+    }
+    else {
+      height = 300;
+    }
+
+    drawingCanvas.width = height;
+    drawingCanvas.height = height/2;
   };
 
   window.drawing.undo = function() {
@@ -265,13 +366,36 @@
   checkButtonDisable("drawing-undo");
   checkButtonDisable("drawing-redo");
 
-  //Attach our pen down/up listeners
-  window.addEventListener("mousedown", handleDrawingOnMouseDownUp);
-  window.addEventListener("mouseup", handleDrawingOnMouseDownUp);
-  window.addEventListener("mousemove", handleMenuOpenOnMouseMove);
-  drawingSizeInput.addEventListener("input", handleOnInput);
+  //Check for touch capabilities, and adjust appropriately
+  if(checkIsTouchable()) {
+    isTouchableInit();
+  }
+
+  //Attach our pen down/up listeners for the drawing canvas
+  drawingCanvas.addEventListener("mousedown", handleDrawingOnMouseDownUp);
+  drawingCanvas.addEventListener("mouseup", handleDrawingOnMouseDownUp);
+  drawingCanvas.addEventListener("mousemove", handleMenuOpenOnMouseMove);
+
+  drawingCanvas.addEventListener("touchstart", handleDrawingOnMouseDownUp);
+  drawingCanvas.addEventListener("touchend", handleDrawingOnMouseDownUp);
+  drawingCanvas.addEventListener("touchmove", handleMenuOpenOnMouseMove);
+  drawingMenuTouchButton.addEventListener("click", handleMenuOpenOnMouseMove);
+
+  //Initialize components
   initializeColorPickerCanvas();
+
+  //Attach our listeners for the menu buttons
+  drawingSizeInput.addEventListener("input", handleOnInput);
   colorPickerCanvas.addEventListener("mousedown", handleColorPickerCanvasOnMouseDownUp);
   colorPickerCanvas.addEventListener("mouseup", handleColorPickerCanvasOnMouseDownUp);
   colorPickerCanvas.addEventListener("mousemove", handleColorPickerCanvasOnMouseDownUp);
+
+  colorPickerCanvas.addEventListener("touchstart", handleColorPickerCanvasOnMouseDownUp);
+  colorPickerCanvas.addEventListener("touchend", handleColorPickerCanvasOnMouseDownUp);
+  colorPickerCanvas.addEventListener("touchmove", handleColorPickerCanvasOnMouseDownUp);
+
+  //Handle resizing and orientation changing
+  window.addEventListener("resize", handleOnResize);
+  window.addEventListener("orientationchange", handleOnResize);
+  handleOnResize();
 })();

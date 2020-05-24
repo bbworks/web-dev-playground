@@ -1,5 +1,9 @@
 <html>
   <head>
+    <meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="This is just a page where I test my skils.">
+    <title>Bradley Biera | Web Dev Playground</title>
     <link type="text/css" rel="stylesheet" href="css/main.css">
     <link type="text/css" rel="stylesheet" href="css/loading.css">
     <link type="text/css" rel="stylesheet" href="css/clock.css">
@@ -88,8 +92,10 @@
           </div>
           <div id="drawing-instructions-overlay">
             <i class="fas fa-arrow-up drawing-instructions-arrow" aria-hidden="true"></i>
-            <p class="drawing-instructions">Hover over the top to display the menu!</p>
+            <p id="drawing-instructions-mouse" class="drawing-instructions">Hover over the top to display the menu!</p>
+            <p id="drawing-instructions-touch" class="drawing-instructions">Touch the button to display the menu!</p>
           </div>
+          <button id="drawing-interface-menu-touch-button" class="fas fa-bars"></button>
         </div>
       </div>
     </section>
