@@ -24,6 +24,7 @@
   let touch;
   let drawingMouseDown = false;
   let colorPickerMouseDown = false;
+  let colorPickerColorSelector;
 
   const totalNumberOfColors = 1536;
   const numberOfColorSequences = 6;
@@ -33,6 +34,22 @@
   const EVENT_TYPE = {
     down: 0,
     up: 1,
+  };
+
+  const MOUSE_BUTTON_COLOR = {
+    0: "primary", //left
+    2: "secondary", //right
+  };
+
+  const penColor = {
+    primary: {
+      color: "black",
+      element: document.getElementById("drawing-color-primary"),
+    },
+    secondary: {
+      color: "white",
+      element: document.getElementById("drawing-color-secondary"),
+    },
   };
 
   const getEventDownUp = function(event) {
@@ -83,6 +100,7 @@
         const point = getOffsetXY(event, drawingCanvas);
 
         drawingCanvasContext.beginPath();
+        drawingCanvasContext.strokeStyle = penColor[MOUSE_BUTTON_COLOR[event.button]].color;
         drawingCanvasContext.moveTo(point.x, point.y);
         touch = points.length;
         points[touch] = {
@@ -229,6 +247,7 @@
 
     if (getEventDownUp(event) === EVENT_TYPE.down) {
       colorPickerMouseDown = true;
+      colorPickerColorSelector = MOUSE_BUTTON_COLOR[event.button];
     }
     else if (getEventDownUp(event) === EVENT_TYPE.up) {
       colorPickerMouseDown = false;
@@ -242,14 +261,14 @@
       const value = Math.floor((x < 0 ? 0 : (x > totalNumberOfColors ? totalNumberOfColors : x)) / colorPickerCanvasWidth * totalNumberOfColors);
       const color = getColorFromValue(value);
       const colorPickerDisplayOffset = (getMouseOrTouch(event) === "mouse" ? 5 : 20); //px
+      penColor[colorPickerColorSelector].color = color;
+
+      penColor[colorPickerColorSelector].element.style.color = color;
       drawingSizeCircle.style.backgroundColor = color;
       colorPickerDisplay.style.backgroundColor = color;
       colorPickerDisplay.style.display = "block";
       colorPickerDisplay.style.top = getPageXY(event).y-colorPickerDisplayOffset+"px";
       colorPickerDisplay.style.left = getPageXY(event).x+colorPickerDisplayOffset+"px";
-
-      drawingCanvasContext.beginPath();
-      drawingCanvasContext.strokeStyle = color;
     }
     else {
       colorPickerDisplay.style.display = "none";
@@ -396,4 +415,9 @@
   window.addEventListener("resize", handleOnResize);
   window.addEventListener("orientationchange", handleOnResize);
   handleOnResize();
+
+  //Make sure we disable the context menu when
+  // using the right-click on our canvases
+  drawingCanvas.addEventListener("contextmenu", (event)=>{event.preventDefault();});
+  colorPickerCanvas.addEventListener("contextmenu", (event)=>{event.preventDefault();});
 })();
