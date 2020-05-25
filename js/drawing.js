@@ -110,7 +110,7 @@
   //Set up a listener for the pen moving while down
   const handleDrawingOnMouseMove = function(event) {
     const point = getOffsetXY(event, drawingCanvas);
-    points[touch].points.push(point.x, point.y);
+    points[touch].points.push([point.x, point.y]);
     drawingCanvasContext.lineTo(point.x, point.y);
     drawingCanvasContext.stroke();
   };
@@ -314,6 +314,7 @@
       }
 
       //Set the context back to where we were
+      drawingCanvasContext.beginPath();
       drawingCanvasContext.strokeStyle = metadataSave.color;
       drawingCanvasContext.lineWidth = metadataSave.width;
     }
@@ -328,7 +329,7 @@
     };
 
     if (undos.length) {
-      //clear our canvas and redraw all but the last touch
+      //Let's redraw the last undo
       const popped = undos.pop();
       points.push(popped);
       drawingCanvasContext.beginPath();
@@ -342,6 +343,7 @@
       }
 
       //Set the context back to where we were
+      drawingCanvasContext.beginPath();
       drawingCanvasContext.strokeStyle = metadataSave.color;
       drawingCanvasContext.lineWidth = metadataSave.width;
     }
@@ -356,10 +358,6 @@
     undos = [];
     checkButtonDisable("drawing-undo");
     checkButtonDisable("drawing-redo");
-  }
-
-  window.drawing.openEditMenu = function() {
-
   }
 
   //Set our button to disabled
