@@ -1,0 +1,83 @@
+.code-renderer-container {
+  overflow-y: auto;
+}
+
+#code-renderer {
+  width: 100%;
+  height: 10em;
+  border: 1px solid lightgray;
+  overflow: scroll;
+}
+
+.code-formatter-container {
+  position: relative;
+  float: left;
+  width: 50%;
+  height: 20rem;
+  content: "this"
+}
+
+.code-formatter, .code-formatter *, .code-formatter-textarea {
+  font: 16px monospace;
+  padding-top: 3em;
+}
+
+.code-formatter-language {
+  position: absolute;
+  top: 0.25em;
+  left: 0.5em;
+  display: block;
+  color: white;
+}
+
+.code-formatter {
+  color: lightgray;
+  background-color: rgb(35,35,35);
+  border: 1px solid gray;
+  border-radius: 0.5em;
+  height: 100%;
+  overflow: scroll;
+}
+
+.code-formatter-textarea {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 1px solid transparent;
+  opacity: 0.5;
+  color: transparent;
+  background-color: transparent;
+  caret-color: white;
+  overflow: scroll;
+  resize: none;
+}
+
+.code-formatter-span-class-tag {
+  color: rgb(255, 63, 63);
+}
+
+.code-formatter-span-class-text {
+  color: rgb(124, 241, 124);
+}
+
+.code-formatter-span-class-attribute {
+  color: orange;
+}
+
+.code-formatter-span-class-doctype {
+  color: gray;
+}
+
+.code-formatter-span-class-class {
+  color: orange;
+}
+
+.code-formatter-span-class-id {
+  color: rgb(0, 165, 218);
+}
+
+.code-formatter-span-class-numbers {
+  color: orange;
+}

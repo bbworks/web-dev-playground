@@ -8,6 +8,7 @@
     <link type="text/css" rel="stylesheet" href="css/loading.css">
     <link type="text/css" rel="stylesheet" href="css/clock.css">
     <link type="text/css" rel="stylesheet" href="css/drawing.css">
+    <link type="text/css" rel="stylesheet" href="css/codeRenderer.css">
     <script src="https://kit.fontawesome.com/4849833081.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -99,8 +100,31 @@
         </div>
       </div>
     </section>
+    <section class="playground-section">
+      <div class="playground-title-container">
+        <h2 class="playground-title">Code Renderer</h2>
+        <h4 class="playground-type">Javascript</h4>
+      </div>
+      <div class="playground-content">
+        <div class="code-renderer-container">
+          <div id="code-renderer"></div>
+          <div class="code-formatter-container">
+            <span class="code-formatter-language">HTML</span>
+            <div id="code-formatter-html" class="code-formatter"></div>
+            <textarea id="code-formatter-textarea-html" class="code-formatter-textarea"></textarea>
+          </div>
+          <div class="code-formatter-container">
+            <span class="code-formatter-language">CSS</span>
+            <div id="code-formatter-css" class="code-formatter"></div>
+            <textarea id="code-formatter-textarea-css" class="code-formatter-textarea"></textarea>
+          </div>
+        </div>
+      </div>
+    </section>
     <div id="color-picker-display" class="drawing-interface-menu-keep-open"></div>
   </body>
-  <script src="js/clock.js"></script>
-  <script src="js/drawing.js"></script>
+  <script type="text/javascript" src="js/clock.js"></script>
+  <script type="text/javascript" src="js/drawing.js"></script>
+  <script type="text/javascript" src="js/codeRenderer.js"></script>
+  <script type="text/javascript" src="lib/dompurify/dist/purify.js"></script>
 </html>
