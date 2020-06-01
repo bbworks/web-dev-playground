@@ -6,7 +6,7 @@
   width: 100%;
   height: 10em;
   border: 1px solid lightgray;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .code-formatter-container {
@@ -14,20 +14,28 @@
   float: left;
   width: 50%;
   height: 20rem;
-  content: "this"
+}
+
+.code-formatter, .code-formatter-textarea {
+  height: 100%;
+  overflow: auto;
 }
 
 .code-formatter, .code-formatter *, .code-formatter-textarea {
+  white-space: nowrap;
   font: 16px monospace;
   padding-top: 3em;
 }
 
 .code-formatter-language {
   position: absolute;
-  top: 0.25em;
-  left: 0.5em;
   display: block;
+  width: 100%;
+  padding: 0.25em 0;
+  padding-left: 0.5em;
   color: white;
+  background-color: rgb(35,35,35);
+  z-index: 1;
 }
 
 .code-formatter {
@@ -35,8 +43,6 @@
   background-color: rgb(35,35,35);
   border: 1px solid gray;
   border-radius: 0.5em;
-  height: 100%;
-  overflow: scroll;
 }
 
 .code-formatter-textarea {
@@ -44,13 +50,11 @@
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
   border: 1px solid transparent;
-  opacity: 0.5;
+  opacity: 1;
   color: transparent;
   background-color: transparent;
   caret-color: white;
-  overflow: scroll;
   resize: none;
 }
 
