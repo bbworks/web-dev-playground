@@ -13,8 +13,18 @@
     codeRenderer.innerHTML = sanitizedCode;
   };
 
+  const removeCSSRules = function (selectorText) {
+    const regEx = new RegExp('#'+rendererClassName+' \\w');
+    for (let i = 0; i < codeRendererStyleSheet.rules.length; i++) {
+      const item = codeRendererStyleSheet.rules[i];
+      if (item.selectorText.match(regEx)) {
+        codeRendererStyleSheet.deleteRule(i);
+      }
+    }
+  };
+
   const parseCSS = function() {
-    const regEx = /([\w\[\]_]+)\s*{((\r|\n|[^}])*)}/;
+    const regEx = /([^{]+)\s*{((\r|\n|[^}])*)}/;
     const regExGlobal = new RegExp(regEx,"g");
     const matches = textareaCSS.value.match(regExGlobal);
 
@@ -32,16 +42,6 @@
     return false;
   };
 
-  const removeCSSRules = function (selectorText) {
-    const regEx = new RegExp('#'+rendererClassName+' \\w');
-    for (let i = 0; i < codeRendererStyleSheet.rules.length; i++) {
-      const item = codeRendererStyleSheet.rules[i];
-      if (item.selectorText.match(regEx)) {
-        codeRendererStyleSheet.deleteRule(i);
-      }
-    }
-  };
-
   const applyCSS = function() {
     removeCSSRules();
     const cssRules = parseCSS();
@@ -54,7 +54,7 @@
   const updateFormatter = function(event, language) {
     switch (language) {
       case "HTML": {
-        formatterHTML.innerHTML = this.value.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/ /g,"&nbsp;").replace(/(\r\n|\r|\n)/g,"<br />").replace(/(<br\s*\/?>\s*)(?=(\1|$))/gi, "$1&nbsp;").replace(/("[^"]*("|))/gi, "<span class=\"code-formatter-span-class-text\">$1</span>").replace(/(&lt;(\/|))(&nbsp;|)+(\w+)((&nbsp;|)+[\w-]+|)/gi, "$1<span class=\"code-formatter-span-class-tag\">$4</span><span class=\"code-formatter-span-class-attribute\">$5</span>").replace(/(&lt;\s*\w+)\s+(\w+)/gi, "$1<span style=\"color:orange\">$2</span>").replace(/(&lt;!((?!&gt;).)*&gt;)/gi, "<span class=\"code-formatter-span-class-doctype\">$1</span>");
+        formatterHTML.innerHTML = this.value.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace("\u201c","\"").replace("\u201d","\"").replace(/ /g,"&nbsp;").replace(/(\r\n|\r|\n)/g,"<br />").replace(/(<br\s*\/?>\s*)(?=(\1|$))/gi, "$1&nbsp;").replace(/("[^"]*("|))/gi, "<span class=\"code-formatter-span-class-text\">$1</span>").replace(/(&lt;\/?(?:&nbsp;)*)(\w+)((?:&nbsp;)+id)/gi, "$1<span class=\"code-formatter-span-class-tag\">$2</span><span class=\"code-formatter-span-class-id\">$3</span>").replace(/(&lt;\/?(?:&nbsp;)*)(\w+)((?:&nbsp;)+class)/gi, "$1<span class=\"code-formatter-span-class-tag\">$2</span><span class=\"code-formatter-span-class-class\">$3</span>").replace(/(&lt;\/?(?:&nbsp;)*)(\w+)((?:&nbsp;)+[\w-]+)?/gi, "$1<span class=\"code-formatter-span-class-tag\">$2</span><span class=\"code-formatter-span-class-attribute\">$3</span>").replace(/(&lt;!((?!&gt;).)*&gt;)/gi, "<span class=\"code-formatter-span-class-doctype\">$1</span>");
         break;
       }
       case "CSS": {
@@ -75,5 +75,52 @@
   textareaCSS.addEventListener("input", function(event) {updateFormatter.call(this, event, "CSS")});
   textareaHTML.addEventListener("scroll", function(event) {scrollFormatter.call(this, event, formatterHTML)});
   textareaCSS.addEventListener("scroll", function(event) {scrollFormatter.call(this, event, formatterCSS)});
+
+  //Pre-load some code to display
+  textareaHTML.value =
+    "<!DOCTYPE html>" + "\n" +
+    "<html>" + "\n" +
+    "  <head></head>" + "\n" +
+    "  <body>" + "\n" +
+    "    <p data-attribute=\"data\">This is a paragraph.</p>" + "\n" +
+    "    <p id=\"test-id\">This is a paragraph with #test-id.</p>" + "\n" +
+    "    <p class=\"test-class\">This is a paragraph with .test-class.</p>" + "\n" +
+    "  </body>" + "\n" +
+    "</html>";
+
+  textareaCSS.value =
+    "p {" + "\n" +
+    "  font: 1em sans-serif;" + "\n" +
+    "  margin-left: 1em;" + "\n" +
+    "  transition: border 0.25s 0.25s, border-radius 0.1s, background-color 0.25s 0.25s;" + "\n" +
+    "}" + "\n" +
+    "" + "\n" +
+    "p:hover {" + "\n" +
+    "  background-color: white;" + "\n" +
+    "  border: 1px solid lightgray;" + "\n" +
+    "  border-radius: 0.25em;" + "\n" +
+    "  padding: 0.25em;" + "\n" +
+    "}" + "\n" +
+    "" + "\n" +
+    "p#test-id {" + "\n" +
+    "  color: blue;" + "\n" +
+    "}" + "\n" +
+    "" + "\n" +
+    "p#test-id::before {" + "\n" +
+    "  content: \"(p#test-id) \";" + "\n" +
+    "}" + "\n" +
+    "" + "\n" +
+    "p.test-class {" + "\n" +
+    "  color: orange;" + "\n" +
+    "}" + "\n" +
+    "" + "\n" +
+    "p.test-class::before {" + "\n" +
+    "  content: \"(p.test-class) \";" + "\n" +
+    "}";
+
+    updateFormatter.call(textareaHTML, event, "HTML")
+    updateFormatter.call(textareaCSS, event, "CSS")
+    updateRenderer();
+    applyCSS();
 
 }());
