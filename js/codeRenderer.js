@@ -54,11 +54,11 @@
   const updateFormatter = function(event, language) {
     switch (language) {
       case "HTML": {
-        formatterHTML.innerHTML = this.value.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace("\u201c","\"").replace("\u201d","\"").replace(/ /g,"&nbsp;").replace(/(\r\n|\r|\n)/g,"<br />").replace(/(<br\s*\/?>\s*)(?=(\1|$))/gi, "$1&nbsp;").replace(/("[^"]*("|))/gi, "<span class=\"code-formatter-span-class-text\">$1</span>").replace(/(&lt;\/?(?:&nbsp;)*)(\w+)((?:&nbsp;)+id)/gi, "$1<span class=\"code-formatter-span-class-tag\">$2</span><span class=\"code-formatter-span-class-id\">$3</span>").replace(/(&lt;\/?(?:&nbsp;)*)(\w+)((?:&nbsp;)+class)/gi, "$1<span class=\"code-formatter-span-class-tag\">$2</span><span class=\"code-formatter-span-class-class\">$3</span>").replace(/(&lt;\/?(?:&nbsp;)*)(\w+)((?:&nbsp;)+[\w-]+)?/gi, "$1<span class=\"code-formatter-span-class-tag\">$2</span><span class=\"code-formatter-span-class-attribute\">$3</span>").replace(/(&lt;!((?!&gt;).)*&gt;)/gi, "<span class=\"code-formatter-span-class-doctype\">$1</span>");
+        formatterHTML.innerHTML = this.value.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace("\u201c","\"").replace("\u201d","\"").replace(/ /g,"&nbsp;").replace(/(\r\n|\r|\n)/g,"<br />").replace(/(<br\s*\/?>\s*)(?=(\1|$))/gi, "$1&nbsp;").replace(/((["'])(?:(?!\2).*?)\2)/gi, "<span class=\"code-formatter-span-class-text\">$1</span>").replace(/(?<!<span[^>]*)class(\s*=\s*)/gi, "<span class=\"code-formatter-span-class-class\">class</span>$1").replace(/(?<!<span[^>]*)id(\s*=\s*)/gi, "<span class=\"code-formatter-span-class-id\">id</span>$1").replace(/(&lt;(?:&nbsp;)*\/?(?:&nbsp;)*)(\w+)/gi, "$1<span class=\"code-formatter-span-class-tag\">$2</span>").replace(/([a-zA-Z][\w\d-]*)(?<!(class|id))(\s*=\s*)/gi, "<span class=\"code-formatter-span-class-attribute\">$1</span>$2$3").replace(/(&lt;!((?!&gt;).)*&gt;)/gi, "<span class=\"code-formatter-span-class-doctype\">$1</span>");
         break;
       }
       case "CSS": {
-        formatterCSS.innerHTML = this.value.replace(/ /g,"&nbsp;").replace(/("[^"]*("|))/gi, "<span class=\"code-formatter-span-class-text\">$1</span>").replace(/\b(a|abbr|acronym|address|area|article|aside|audio|b|bdi|bdo|big|blink|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|content|data|datalist|dd|decorator|del|details|dfn|dir|div|dl|dt|element|em|fieldset|figcaption|figure|font|footer|form|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|img|input|ins|kbd|label|legend|li|main|map|mark|marquee|menu|menuitem|meter|nav|nobr|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|s|samp|section|select|shadow|small|source|spacer|span|strike|strong|style|sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|track|tt|u|ul|var|video|wbr)\b(.*\{)/gi, "<span class=\"code-formatter-span-class-tag\">$1</span>$2").replace(/(\r\n|\r|\n)/g,"<br />").replace(/(\.[\w-]+)/gi, "<span class=\"code-formatter-span-class-class\">$1</span>").replace(/(#[\w-]+)/gi, "<span class=\"code-formatter-span-class-id\">$1</span>").replace(/(:(&nbsp;|))(\d+[\d\w-%\.&;]+);/gi, "$1<span class=\"code-formatter-span-class-numbers\">$3</span>;");
+        formatterCSS.innerHTML = this.value.replace(/ /g,"&nbsp;").replace(/("[^"]*("|))/gi, "<span class=\"code-formatter-span-class-text\">$1</span>").replace(/\b(a|abbr|acronym|address|area|article|aside|audio|b|bdi|bdo|big|blink|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|content|data|datalist|dd|decorator|del|details|dfn|dir|div|dl|dt|element|em|fieldset|figcaption|figure|font|footer|form|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|img|input|ins|kbd|label|legend|li|main|map|mark|marquee|menu|menuitem|meter|nav|nobr|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|s|samp|section|select|shadow|small|source|spacer|span|strike|strong|style|sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|track|tt|u|ul|var|video|wbr)\b(.*\{)/gi, "<span class=\"code-formatter-span-class-tag\">$1</span>$2").replace(/(\r\n|\r|\n)/g,"<br />").replace(/(\.[a-zA-Z][\w\d-]*)/gi, "<span class=\"code-formatter-span-class-class\">$1</span>").replace(/(#[a-zA-Z][\w\d-]*)/gi, "<span class=\"code-formatter-span-class-id\">$1</span>").replace(/(:(&nbsp;|))(\d+[\d\w-%\.&;]+);/gi, "$1<span class=\"code-formatter-span-class-numbers\">$3</span>;");
         break;
       }
     }
@@ -83,7 +83,7 @@
     "  <head></head>" + "\n" +
     "  <body>" + "\n" +
     "    <p data-attribute=\"data\">This is a paragraph.</p>" + "\n" +
-    "    <p id=\"test-id\">This is a paragraph with #test-id.</p>" + "\n" +
+    "    <p id=\"test-id\" class=\"test-class\">This is a paragraph with #test-id.</p>" + "\n" +
     "    <p class=\"test-class\">This is a paragraph with .test-class.</p>" + "\n" +
     "  </body>" + "\n" +
     "</html>";
@@ -102,11 +102,11 @@
     "  padding: 0.25em;" + "\n" +
     "}" + "\n" +
     "" + "\n" +
-    "p#test-id {" + "\n" +
-    "  color: blue;" + "\n" +
+    "p#test-id.test-class {" + "\n" +
+    "  font-weight: bold;" + "\n" +
     "}" + "\n" +
     "" + "\n" +
-    "p#test-id::before {" + "\n" +
+    "p#test-id.test-class::before {" + "\n" +
     "  content: \"(p#test-id) \";" + "\n" +
     "}" + "\n" +
     "" + "\n" +
