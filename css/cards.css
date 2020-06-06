@@ -1,0 +1,165 @@
+#card-container {
+  background-color: green;
+  max-width: 600px;
+  padding: 16px;
+  perspective: 650px;
+}
+
+.card {
+  display: inline-block;
+  position: relative;
+  width: 100px;
+  height: 150px;
+  margin: 4px;
+  transition: transform 0.5s;
+  transform-style: preserve-3d;
+  box-shadow: -4px 2px 4px black;
+}
+
+.card.card-flipped {
+  transform: rotateY(180deg);
+}
+
+.card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 4px solid rgb(245,245,245);
+  border-radius: 8px;
+  backface-visibility: hidden;
+}
+
+.card-face-front {
+  background-color: rgb(245,245,245);
+
+}
+
+.card-face-back {
+  background-color: rgb(0,0,150);
+  transform: rotateY(180deg);
+
+  /*URL: https://leaverou.github.io/css3patterns/#marrakesh*/
+  /* Shrink factor: 3*/
+  background-color: midnightblue;
+  background-image:
+    radial-gradient(rgb(245,245,245) calc(9px / /*shrink-factor*/3), transparent calc(10px / /*shrink-factor*/3)),
+    repeating-radial-gradient(rgb(245,245,245) 0, rgb(245,245,245) calc(4px / /*shrink-factor*/3), transparent calc(5px / /*shrink-factor*/3), transparent calc(20px / /*shrink-factor*/3), rgb(245,245,245) calc(21px / /*shrink-factor*/3), rgb(245,245,245) calc(25px / /*shrink-factor*/3), transparent calc(26px / /*shrink-factor*/3), transparent calc(50px / /*shrink-factor*/3));
+  background-size: calc(30px / /*shrink-factor*/3) calc(30px / /*shrink-factor*/3), calc(90px / /*shrink-factor*/3) calc(90px / /*shrink-factor*/3);
+  background-position: 0 0;
+}
+
+.card-face-suit-number-container {
+  position: absolute;
+}
+
+.card-face-suit-number-container-top {
+  top: 5px;
+  left: 5px;
+}
+
+.card-face-suit-number-container-bottom {
+  bottom: 5px;
+  right: 5px;
+  transform: rotate(180deg);
+}
+
+.card-face-suit-number {
+  display: block;
+  font-size: 12px;
+}
+
+.card-face-image {
+  position: relative;
+  width: 70%;
+  height: 80%;
+  top: 10%;
+  left: 15%;
+  border: 1px solid rgb(225,225,225);;
+  border-radius: 4px;
+}
+
+.card[data-card-suit="heart"] .card-face-suit::before {
+  content: "♥️";
+}
+
+.card[data-card-suit="spade"] .card-face-suit::before {
+  content: "♠️";
+}
+
+.card[data-card-suit="diamond"] .card-face-suit::before {
+  content: "♦️";
+}
+
+.card[data-card-suit="club"] .card-face-suit::before {
+  content: "♣️";
+}
+
+.card[data-card-suit="heart"] .card-face-suit-number::before {
+  color: red;
+}
+
+.card[data-card-suit="spade"] .card-face-suit-number::before {
+  color: black;
+}
+
+.card[data-card-suit="diamond"] .card-face-suit-number::before {
+  color: red;
+}
+
+.card[data-card-suit="club"] .card-face-suit-number::before {
+  color: black;
+}
+
+.card[data-card-number="1"] .card-face-number::before {
+  content: "1";
+}
+
+.card[data-card-number="2"] .card-face-number::before {
+  content: "2";
+}
+
+.card[data-card-number="3"] .card-face-number::before {
+  content: "3";
+}
+
+.card[data-card-number="4"] .card-face-number::before {
+  content: "4";
+}
+
+.card[data-card-number="5"] .card-face-number::before {
+  content: "5";
+}
+
+.card[data-card-number="6"] .card-face-number::before {
+  content: "6";
+}
+
+.card[data-card-number="7"] .card-face-number::before {
+  content: "7";
+}
+
+.card[data-card-number="8"] .card-face-number::before {
+  content: "8";
+}
+
+.card[data-card-number="9"] .card-face-number::before {
+  content: "9";
+}
+
+.card[data-card-number="10"] .card-face-number::before {
+  content: "10";
+}
+
+.card[data-card-number="J"] .card-face-number::before {
+  content: "J";
+}
+
+.card[data-card-number="Q"] .card-face-number::before {
+  content: "Q";
+}
+
+.card[data-card-number="K"] .card-face-number::before {
+  content: "K";
+}

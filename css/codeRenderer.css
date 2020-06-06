@@ -30,11 +30,10 @@
 .code-formatter-language {
   position: absolute;
   display: block;
-  width: 100%;
+  width: calc(100% - 18px ); /*18px--approximate width of scroll bar?*/
   padding: 0.25em 0;
   padding-left: 0.5em;
   color: white;
-  background-color: rgb(35,35,35);
   z-index: 1;
 }
 
@@ -42,7 +41,6 @@
   color: lightgray;
   background-color: rgb(35,35,35);
   border: 1px solid gray;
-  border-radius: 0.5em;
 }
 
 .code-formatter-textarea {
