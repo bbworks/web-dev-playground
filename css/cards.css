@@ -1,3 +1,22 @@
+.score-container {
+  font-size: 1.2rem;
+  color: midnightblue;
+  background-color: rgb(245,245,245);
+  font-weight: bold;
+  padding: 0.5em;
+  padding-bottom: 0.25em;
+  border: 1px solid black;
+  overflow-y: hidden;
+}
+
+.matches-remaining {
+  float: left;
+}
+
+.attempts {
+  float: right;
+}
+
 #card-container {
   background-color: green;
   max-width: 600px;
@@ -164,4 +183,30 @@
 
 .card[data-card-number="K"] .card-face-number::before {
   content: "K";
+}
+
+@media screen and (max-width: 600px) {
+  .score-container {
+    font-size: 1rem;
+  }
+
+  .card {
+    width: 50px;
+    height: 75px;
+  }
+
+  .card-face-suit-number {
+    display: block;
+    font-size: 10px;
+  }
+
+  .card-face-suit-number-container-top {
+    top: 1px;
+    left: 1px;
+  }
+
+  .card-face-suit-number-container-bottom {
+    bottom: 1px;
+    right: 1px;
+  }
 }

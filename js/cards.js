@@ -70,7 +70,7 @@
       chosenCards[0].getAttribute("data-card-suit") === chosenCards[1].getAttribute("data-card-suit")
     ) {
       chosenCards = [];
-      matches += 2;
+      matches++;
       return true;
     }
 
@@ -83,7 +83,7 @@
     const matchesRemainingCounter = document.getElementById("matches-remaining-counter");
     const attemptsCounter = document.getElementById("attempts-counter");
 
-    matchesRemainingCounter.innerText = matches;
+    matchesRemainingCounter.innerText = (numOfCards/2)-matches;
     attemptsCounter.innerText = attempts;
   };
 
