@@ -32,11 +32,12 @@
 }
 
 .card-face-front {
+  z-index: 2;
   background-color: rgb(245,245,245);
-
 }
 
 .card-face-back {
+  z-index: 1;
   background-color: rgb(0,0,150);
   transform: rotateY(180deg);
 
