@@ -54,11 +54,36 @@
   const updateFormatter = function(event, language) {
     switch (language) {
       case "HTML": {
-        formatterHTML.innerHTML = this.value.replace(/</g,"&lt;").replace(/>/g,"&gt;").replace("\u201c","\"").replace("\u201d","\"").replace(/ /g,"&nbsp;").replace(/(\r\n|\r|\n)/g,"<br />").replace(/(<br\s*\/?>\s*)(?=(\1|$))/gi, "$1&nbsp;").replace(/((["'])(?:(?!\2).*?)\2)/gi, "<span class=\"code-formatter-span-class-text\">$1</span>").replace(/(?<!<span[^>]*)class(\s*=\s*)/gi, "<span class=\"code-formatter-span-class-class\">class</span>$1").replace(/(?<!<span[^>]*)id(\s*=\s*)/gi, "<span class=\"code-formatter-span-class-id\">id</span>$1").replace(/(&lt;(?:&nbsp;)*\/?(?:&nbsp;)*)(\w+)/gi, "$1<span class=\"code-formatter-span-class-tag\">$2</span>").replace(/([a-zA-Z][\w\d-]*)(?<!(class|id))(\s*=\s*)/gi, "<span class=\"code-formatter-span-class-attribute\">$1</span>$2$3").replace(/(&lt;!((?!&gt;).)*&gt;)/gi, "<span class=\"code-formatter-span-class-doctype\">$1</span>");
+        formatterHTML.innerHTML = this.value
+          .replace(/</g,"&lt;")
+          .replace(/>/g,"&gt;")
+          .replace(/\u201c/gi,"\"")
+          .replace(/\u201d/gi,"\"")
+          .replace(/ /g,"&nbsp;")
+          .replace(/(\r\n|\r|\n)/g,"<br />")
+          .replace(/(<br\s*\/?>\s*)(?=(\1|$))/gi, "$1&nbsp;")
+          .replace(/((["'])(?:(?!\2).*?)\2)/gi, "<span class=\"code-formatter-span-class-text\">$1</span>")
+          .split("").reverse().join("") //Reverse the string for these next ones to avoid negative lookbehinds (not yet widely-supporetd)
+            .replace(/(\s*=\s*)ssalc(?![^>]*naps<)/gi, "$1>naps/<ssalc>\"ssalc-ssalc-naps-rettamrof-edoc\"=ssalc naps<")
+            .replace(/(\s*=\s*)di(?![^>]*naps<)/gi, "$1>naps/<di>\"di-ssalc-naps-rettamrof-edoc\"=ssalc naps<")
+            .replace(/(\s*=\s*)(?!(?:ssalc|di))([\w\d-]*[a-zA-Z])/gi, "$1>naps/<$2>\"etubirtta-ssalc-naps-rettamrof-edoc\"=ssalc naps<")
+            .split("").reverse().join("")
+          //.replace(/(?<!<span[^>]*)class(\s*=\s*)/gi, "<span class=\"code-formatter-span-class-class\">class</span>$1")
+          //.replace(/(?<!<span[^>]*)id(\s*=\s*)/gi, "<span class=\"code-formatter-span-class-id\">id</span>$1")
+          //.replace(/([a-zA-Z][\w\d-]*)(?<!(class|id))(\s*=\s*)/gi, "<span class=\"code-formatter-span-class-attribute\">$1</span>$2$3")
+          .replace(/(&lt;(?:&nbsp;)*\/?(?:&nbsp;)*)(\w+)/gi, "$1<span class=\"code-formatter-span-class-tag\">$2</span>")
+          .replace(/(&lt;!((?!&gt;).)*&gt;)/gi, "<span class=\"code-formatter-span-class-doctype\">$1</span>");
         break;
       }
       case "CSS": {
-        formatterCSS.innerHTML = this.value.replace(/ /g,"&nbsp;").replace(/("[^"]*("|))/gi, "<span class=\"code-formatter-span-class-text\">$1</span>").replace(/\b(a|abbr|acronym|address|area|article|aside|audio|b|bdi|bdo|big|blink|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|content|data|datalist|dd|decorator|del|details|dfn|dir|div|dl|dt|element|em|fieldset|figcaption|figure|font|footer|form|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|img|input|ins|kbd|label|legend|li|main|map|mark|marquee|menu|menuitem|meter|nav|nobr|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|s|samp|section|select|shadow|small|source|spacer|span|strike|strong|style|sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|track|tt|u|ul|var|video|wbr)\b(.*\{)/gi, "<span class=\"code-formatter-span-class-tag\">$1</span>$2").replace(/(\r\n|\r|\n)/g,"<br />").replace(/(\.[a-zA-Z][\w\d-]*)/gi, "<span class=\"code-formatter-span-class-class\">$1</span>").replace(/(#[a-zA-Z][\w\d-]*)/gi, "<span class=\"code-formatter-span-class-id\">$1</span>").replace(/(:(&nbsp;|))(\d+[\d\w-%\.&;]+);/gi, "$1<span class=\"code-formatter-span-class-numbers\">$3</span>;");
+        formatterCSS.innerHTML = this.value
+          .replace(/ /g,"&nbsp;")
+          .replace(/("[^"]*("|))/gi, "<span class=\"code-formatter-span-class-text\">$1</span>")
+          .replace(/\b(a|abbr|acronym|address|area|article|aside|audio|b|bdi|bdo|big|blink|blockquote|body|br|button|canvas|caption|center|cite|code|col|colgroup|content|data|datalist|dd|decorator|del|details|dfn|dir|div|dl|dt|element|em|fieldset|figcaption|figure|font|footer|form|h1|h2|h3|h4|h5|h6|head|header|hgroup|hr|html|i|img|input|ins|kbd|label|legend|li|main|map|mark|marquee|menu|menuitem|meter|nav|nobr|ol|optgroup|option|output|p|picture|pre|progress|q|rp|rt|ruby|s|samp|section|select|shadow|small|source|spacer|span|strike|strong|style|sub|summary|sup|table|tbody|td|template|textarea|tfoot|th|thead|time|tr|track|tt|u|ul|var|video|wbr)\b(.*\{)/gi, "<span class=\"code-formatter-span-class-tag\">$1</span>$2")
+          .replace(/(\r\n|\r|\n)/g,"<br />")
+          .replace(/(\.[a-zA-Z][\w\d-]*)/gi, "<span class=\"code-formatter-span-class-class\">$1</span>")
+          .replace(/(#[a-zA-Z][\w\d-]*)/gi, "<span class=\"code-formatter-span-class-id\">$1</span>")
+          .replace(/(:(&nbsp;|))(\d+[\d\w-%\.&;]+);/gi, "$1<span class=\"code-formatter-span-class-numbers\">$3</span>;");
         break;
       }
     }
