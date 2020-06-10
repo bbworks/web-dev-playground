@@ -10,6 +10,7 @@
     <link type="text/css" rel="stylesheet" href="css/drawing.css">
     <link type="text/css" rel="stylesheet" href="css/codeRenderer.css">
     <link type="text/css" rel="stylesheet" href="css/cards.css">
+    <link type="text/css" rel="stylesheet" href="css/keyboard.css">
     <script src="https://kit.fontawesome.com/4849833081.js" crossorigin="anonymous"></script>
   </head>
   <body>
@@ -135,6 +136,103 @@
         <div id="card-container" class="card-perspective-container-650"></div>
       </div>
     </section>
+    <section class="playground-section">
+      <div class="playground-title-container">
+        <h2 class="playground-title">Keyboard Key Tracker</h2>
+        <h4 class="playground-type">Javascript, DOM Keyboard Events</h4>
+      </div>
+      <div class="playground-content">
+        <div class="keyboard">
+          <ul class="keyboard-row"
+            ><li id="Esc" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="Esc"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F1" class="keyboard-key key-size-1-25"><span class="keyboard-key-character" data-character="F1"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F2" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F2"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F3" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F3"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F4" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F4"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F5" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F5"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F6" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F6"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F7" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F7"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F8" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F8"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F9" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F9"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F10" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F10"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F11" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F11"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F12" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="F12"></span></li
+            ><hr class="keyboard-key-separator"/><li id="Del" class="keyboard-key key-size-1-25"><span class="keyboard-key-character" data-character="Del"></span></li
+          ></ul>
+          <ul class="keyboard-row"
+            ><li id="`" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="`"></span></li
+            ><hr class="keyboard-key-separator"/><li id="1" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="1"></span></li
+            ><hr class="keyboard-key-separator"/><li id="2" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="2"></span></li
+            ><hr class="keyboard-key-separator"/><li id="3" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="3"></span></li
+            ><hr class="keyboard-key-separator"/><li id="4" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="4"></span></li
+            ><hr class="keyboard-key-separator"/><li id="5" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="5"></span></li
+            ><hr class="keyboard-key-separator"/><li id="6" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="6"></span></li
+            ><hr class="keyboard-key-separator"/><li id="7" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="7"></span></li
+            ><hr class="keyboard-key-separator"/><li id="8" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="8"></span></li
+            ><hr class="keyboard-key-separator"/><li id="9" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="9"></span></li
+            ><hr class="keyboard-key-separator"/><li id="0" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="0"></span></li
+            ><hr class="keyboard-key-separator"/><li id="-" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="-"></span></li
+            ><hr class="keyboard-key-separator"/><li id="=" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="="></span></li
+            ><hr class="keyboard-key-separator"/><li id="Backspace" class="keyboard-key key-size-1-5"><span class="keyboard-key-character" data-character="Backspace"></span></li
+          ></ul>
+          <ul class="keyboard-row"
+            ><li id="Tab" class="keyboard-key key-size-1-25"><span class="keyboard-key-character" data-character="Tab"></span></li
+            ><hr class="keyboard-key-separator"/><li id="Q" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="q"></span></li
+            ><hr class="keyboard-key-separator"/><li id="W" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="w"></span></li
+            ><hr class="keyboard-key-separator"/><li id="E" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="e"></span></li
+            ><hr class="keyboard-key-separator"/><li id="R" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="r"></span></li
+            ><hr class="keyboard-key-separator"/><li id="T" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="t"></span></li
+            ><hr class="keyboard-key-separator"/><li id="Y" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="y"></span></li
+            ><hr class="keyboard-key-separator"/><li id="U" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="u"></span></li
+            ><hr class="keyboard-key-separator"/><li id="I" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="i"></span></li
+            ><hr class="keyboard-key-separator"/><li id="O" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="o"></span></li
+            ><hr class="keyboard-key-separator"/><li id="P" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="p"></span></li
+            ><hr class="keyboard-key-separator"/><li id="[" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="["></span></li
+            ><hr class="keyboard-key-separator"/><li id="]" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="]"></span></li
+            ><hr class="keyboard-key-separator"/><li id="\" class="keyboard-key key-size-1-25"><span class="keyboard-key-character" data-character="\"></span></li
+          ></ul>
+          <ul class="keyboard-row"
+            ><li id="CapsLock" class="keyboard-key key-size-1-5"><span class="keyboard-key-character" data-character="Caps Lock"></span></li
+            ><hr class="keyboard-key-separator"/><li id="A" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="a"></span></li
+            ><hr class="keyboard-key-separator"/><li id="S" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="s"></span></li
+            ><hr class="keyboard-key-separator"/><li id="D" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="d"></span></li
+            ><hr class="keyboard-key-separator"/><li id="F" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="f"></span></li
+            ><hr class="keyboard-key-separator"/><li id="G" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="g"></span></li
+            ><hr class="keyboard-key-separator"/><li id="H" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="h"></span></li
+            ><hr class="keyboard-key-separator"/><li id="J" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="j"></span></li
+            ><hr class="keyboard-key-separator"/><li id="K" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="k"></span></li
+            ><hr class="keyboard-key-separator"/><li id="L" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="l"></span></li
+            ><hr class="keyboard-key-separator"/><li id=";" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character=";"></span></li
+            ><hr class="keyboard-key-separator"/><li id="'" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="'"></span></li
+            ><hr class="keyboard-key-separator"/><li id="Enter" class="keyboard-key key-size-2-25"><span class="keyboard-key-character" data-character="Enter"></span></li
+          ></ul>
+          <ul class="keyboard-row"
+            ><li id="ShiftLeft" class="keyboard-key key-size-2-25"><span class="keyboard-key-character" data-character="Shift"></span></li
+            ><hr class="keyboard-key-separator"/><li id="Z" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="z"></span></li
+            ><hr class="keyboard-key-separator"/><li id="X" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="x"></span></li
+            ><hr class="keyboard-key-separator"/><li id="C" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="c"></span></li
+            ><hr class="keyboard-key-separator"/><li id="V" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="v"></span></li
+            ><hr class="keyboard-key-separator"/><li id="B" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="b"></span></li
+            ><hr class="keyboard-key-separator"/><li id="N" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="n"></span></li
+            ><hr class="keyboard-key-separator"/><li id="M" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="m"></span></li
+            ><hr class="keyboard-key-separator"/><li id="," class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character=","></span></li
+            ><hr class="keyboard-key-separator"/><li id="." class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="."></span></li
+            ><hr class="keyboard-key-separator"/><li id="/" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="/"></span></li
+            ><hr class="keyboard-key-separator"/><li id="ShiftRight" class="keyboard-key key-size-2-75"><span class="keyboard-key-character" data-character="Shift"></span></li
+          ></ul>
+          <ul class="keyboard-row"
+            ><li id="CtrlLeft" class="keyboard-key key-size-1-5"><span class="keyboard-key-character" data-character="Ctrl"></span></li
+            ><hr class="keyboard-key-separator"/><li id="Fn" class="keyboard-key key-size-1"><span class="keyboard-key-character" data-character="Fn"></span></li
+            ><hr class="keyboard-key-separator"/><li id="Windows" class="keyboard-key key-size-1"><span class="keyboard-key-character fab fa-windows" data-character="Windows"></span></li
+            ><hr class="keyboard-key-separator"/><li id="AltLeft" class="keyboard-key key-size-1-25"><span class="keyboard-key-character" data-character="Alt"></span></li
+            ><hr class="keyboard-key-separator"/><li id="Space" class="keyboard-key key-size-7-5"><span class="keyboard-key-character" data-character="Space"></span></li
+            ><hr class="keyboard-key-separator"/><li id="AltRight" class="keyboard-key key-size-1-25"><span class="keyboard-key-character" data-character="Alt"></span></li
+            ><hr class="keyboard-key-separator"/><li id="ContextMenu" class="keyboard-key key-size-1"><span class="keyboard-key-character fas fa-bars" data-character="ContextMenu"></span></li
+            ><hr class="keyboard-key-separator"/><li id="CtrlRight" class="keyboard-key key-size-1-5"><span class="keyboard-key-character" data-character="Ctrl"></span></li
+          ></ul>
+        </div>
+      </div>
+    </section>
     <div id="color-picker-display" class="drawing-interface-menu-keep-open"></div>
   </body>
   <script type="text/javascript" src="lib/dompurify/dist/purify.js"></script>
@@ -142,4 +240,5 @@
   <script type="text/javascript" src="js/drawing.js"></script>
   <script type="text/javascript" src="js/codeRenderer.js"></script>
   <script type="text/javascript" src="js/cards.js"></script>
+  <script type="text/javascript" src="js/keyboard.js"></script>
 </html>

@@ -1,5 +1,5 @@
 (function() {
-  const codeRendererStyleSheet = document.styleSheets[4];
+  const codeRendererStyleSheet = new Array(...document.styleSheets).filter(item=>item.href.match("codeRenderer.css"))[0];
   const rendererClassName = "code-renderer";
   const codeRenderer = document.getElementById(rendererClassName);
   const formatterHTML = document.getElementById("code-formatter-html");

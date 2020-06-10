@@ -1,0 +1,568 @@
+:root {
+  --keyboard-key-size: 24px;
+}
+
+.keyboard {
+  background-color: rgb(35,35,35);
+  width: calc(var(--keyboard-key-size) * 22); /*528px*/
+  padding: calc(var(--keyboard-key-size) * 2 / 3) calc(var(--keyboard-key-size) * 2);
+  border-radius: calc(var(--keyboard-key-size) * 2 / 3);
+}
+
+ul {
+  padding: 0;
+}
+
+.keyboard-row:nth-child(n+2) {
+  display: block;
+  margin-top: calc(var(--keyboard-key-size) / 4);
+}
+
+.keyboard-key {
+  display: inline-block;
+  list-style-type: none;
+  color: white;
+  background-color: rgb(50,50,50);
+  border-radius: 4px;
+  width: var(--keyboard-key-size);
+  height: var(--keyboard-key-size);
+  font-size: calc(var(--keyboard-key-size) / 2);
+  overflow: hidden;
+  padding: calc(var(--keyboard-key-size) / 4);
+  box-shadow: 2px 2px 2px red;
+  border: 1px solid transparent;
+  transition: background-color 0.25s, border 0.25s;
+}
+
+.keyboard-key.key-down {
+  background-color: rgb(100,100,100);
+  border: 3px solid white;
+}
+
+.keyboard-key-separator {
+  display: inline-block;
+  border: none;
+  margin-left: calc(var(--keyboard-key-size) / 4);
+}
+
+.keyboard-key-character {
+
+}
+
+.key-size-1 {
+  width: calc(var(--keyboard-key-size) * 1);
+}
+
+.key-size-1-25 {
+  width: calc(var(--keyboard-key-size) * 1.25);
+}
+
+.key-size-1-5 {
+  width: calc(var(--keyboard-key-size) * 1.5);
+}
+
+.key-size-1-75 {
+  width: calc(var(--keyboard-key-size) * 1.75);
+}
+
+.key-size-2 {
+  width: calc(var(--keyboard-key-size) * 2);
+}
+
+.key-size-2-25 {
+  width: calc(var(--keyboard-key-size) * 2.25);
+}
+
+.key-size-2-75 {
+  width: calc(var(--keyboard-key-size) * 2.75);
+}
+
+.key-size-7-5 {
+  width: calc(var(--keyboard-key-size) * 7.5);
+}
+
+[data-character="Esc"]::before {
+	content: "Esc";
+}
+
+[data-character="F1"]::before {
+	content: "F1";
+}
+
+[data-character="F2"]::before {
+	content: "F2";
+}
+
+[data-character="F3"]::before {
+	content: "F3";
+}
+
+[data-character="F4"]::before {
+	content: "F4";
+}
+
+[data-character="F5"]::before {
+	content: "F5";
+}
+
+[data-character="F6"]::before {
+	content: "F6";
+}
+
+[data-character="F7"]::before {
+	content: "F7";
+}
+
+[data-character="F8"]::before {
+	content: "F8";
+}
+
+[data-character="F9"]::before {
+	content: "F9";
+}
+
+[data-character="F10"]::before {
+	content: "F10";
+}
+
+[data-character="F11"]::before {
+	content: "F11";
+}
+
+[data-character="F12"]::before {
+	content: "F12";
+}
+
+[data-character="Del"]::before {
+	content: "Del";
+}
+
+[data-character="`"]::before {
+	content: "`";
+}
+
+[data-character="1"]::before {
+	content: "1";
+}
+
+[data-character="2"]::before {
+	content: "2";
+}
+
+[data-character="3"]::before {
+	content: "3";
+}
+
+[data-character="4"]::before {
+	content: "4";
+}
+
+[data-character="5"]::before {
+	content: "5";
+}
+
+[data-character="6"]::before {
+	content: "6";
+}
+
+[data-character="7"]::before {
+	content: "7";
+}
+
+[data-character="8"]::before {
+	content: "8";
+}
+
+[data-character="9"]::before {
+	content: "9";
+}
+
+[data-character="0"]::before {
+	content: "0";
+}
+
+[data-character="-"]::before {
+	content: "-";
+}
+
+[data-character="="]::before {
+	content: "=";
+}
+
+[data-character="Backspace"]::before {
+	content: "Backspace";
+}
+
+[data-character="Tab"]::before {
+	content: "Tab";
+}
+
+[data-character="q"]::before {
+	content: "q";
+}
+
+[data-character="w"]::before {
+	content: "w";
+}
+
+[data-character="e"]::before {
+	content: "e";
+}
+
+[data-character="r"]::before {
+	content: "r";
+}
+
+[data-character="t"]::before {
+	content: "t";
+}
+
+[data-character="y"]::before {
+	content: "y";
+}
+
+[data-character="u"]::before {
+	content: "u";
+}
+
+[data-character="i"]::before {
+	content: "i";
+}
+
+[data-character="o"]::before {
+	content: "o";
+}
+
+[data-character="p"]::before {
+	content: "p";
+}
+
+[data-character="["]::before {
+	content: "[";
+}
+
+[data-character="]"]::before {
+	content: "]";
+}
+
+[data-character="\\"]::before {
+	content: "\\";
+}
+
+[data-character="Caps Lock"]::before {
+	content: "Caps Lock";
+}
+
+[data-character="a"]::before {
+	content: "a";
+}
+
+[data-character="s"]::before {
+	content: "s";
+}
+
+[data-character="d"]::before {
+	content: "d";
+}
+
+[data-character="f"]::before {
+	content: "f";
+}
+
+[data-character="g"]::before {
+	content: "g";
+}
+
+[data-character="h"]::before {
+	content: "h";
+}
+
+[data-character="j"]::before {
+	content: "j";
+}
+
+[data-character="k"]::before {
+	content: "k";
+}
+
+[data-character="l"]::before {
+	content: "l";
+}
+
+[data-character=";"]::before {
+	content: ";";
+}
+
+[data-character="'"]::before {
+	content: "'";
+}
+
+[data-character="Enter"]::before {
+	content: "Enter";
+}
+
+[data-character="Shift"]::before {
+	content: "Shift";
+}
+
+[data-character="z"]::before {
+	content: "z";
+}
+
+[data-character="x"]::before {
+	content: "x";
+}
+
+[data-character="c"]::before {
+	content: "c";
+}
+
+[data-character="v"]::before {
+	content: "v";
+}
+
+[data-character="b"]::before {
+	content: "b";
+}
+
+[data-character="n"]::before {
+	content: "n";
+}
+
+[data-character="m"]::before {
+	content: "m";
+}
+
+[data-character=","]::before {
+	content: ",";
+}
+
+[data-character="."]::before {
+	content: ".";
+}
+
+[data-character="/"]::before {
+	content: "/";
+}
+
+[data-character="Shift"]::before {
+	content: "Shift";
+}
+
+[data-character="Ctrl"]::before {
+	content: "Ctrl";
+}
+
+[data-character="Fn"]::before {
+	content: "Fn";
+}
+
+[data-character="Windows"]::before {
+
+}
+
+[data-character="Alt"]::before {
+	content: "Alt";
+}
+
+[data-character="Space"]::before {
+	content: "Space";
+}
+
+[data-character="ContextMenu"]::before {
+
+}
+
+.keyboard.shift [data-character="`"]::before {
+	content: "~";
+}
+
+.keyboard.shift [data-character="1"]::before {
+	content: "!";
+}
+
+.keyboard.shift [data-character="2"]::before {
+	content: "@";
+}
+
+.keyboard.shift [data-character="3"]::before {
+	content: "#";
+}
+
+.keyboard.shift [data-character="4"]::before {
+	content: "$";
+}
+
+.keyboard.shift [data-character="5"]::before {
+	content: "%";
+}
+
+.keyboard.shift [data-character="6"]::before {
+	content: "^";
+}
+
+.keyboard.shift [data-character="7"]::before {
+	content: "&";
+}
+
+.keyboard.shift [data-character="8"]::before {
+	content: "*";
+}
+
+.keyboard.shift [data-character="9"]::before {
+	content: "(";
+}
+
+.keyboard.shift [data-character="0"]::before {
+	content: ")";
+}
+
+.keyboard.shift [data-character="-"]::before {
+	content: "_";
+}
+
+.keyboard.shift [data-character="="]::before {
+	content: "+";
+}
+
+.keyboard.shift [data-character="q"]::before {
+	content: "Q";
+}
+
+.keyboard.shift [data-character="w"]::before {
+	content: "W";
+}
+
+.keyboard.shift [data-character="e"]::before {
+	content: "E";
+}
+
+.keyboard.shift [data-character="r"]::before {
+	content: "R";
+}
+
+.keyboard.shift [data-character="t"]::before {
+	content: "T";
+}
+
+.keyboard.shift [data-character="y"]::before {
+	content: "Y";
+}
+
+.keyboard.shift [data-character="u"]::before {
+	content: "U";
+}
+
+.keyboard.shift [data-character="i"]::before {
+	content: "I";
+}
+
+.keyboard.shift [data-character="o"]::before {
+	content: "O";
+}
+
+.keyboard.shift [data-character="p"]::before {
+	content: "P";
+}
+
+.keyboard.shift [data-character="["]::before {
+	content: "{";
+}
+
+.keyboard.shift [data-character="]"]::before {
+	content: "}";
+}
+
+.keyboard.shift [data-character="\\"]::before {
+	content: "|";
+}
+
+.keyboard.shift [data-character="a"]::before {
+	content: "A";
+}
+
+.keyboard.shift [data-character="s"]::before {
+	content: "S";
+}
+
+.keyboard.shift [data-character="d"]::before {
+	content: "D";
+}
+
+.keyboard.shift [data-character="f"]::before {
+	content: "F";
+}
+
+.keyboard.shift [data-character="g"]::before {
+	content: "G";
+}
+
+.keyboard.shift [data-character="h"]::before {
+	content: "H";
+}
+
+.keyboard.shift [data-character="j"]::before {
+	content: "J";
+}
+
+.keyboard.shift [data-character="k"]::before {
+	content: "K";
+}
+
+.keyboard.shift [data-character="l"]::before {
+	content: "L";
+}
+
+.keyboard.shift [data-character=";"]::before {
+	content: ":";
+}
+
+.keyboard.shift [data-character="'"]::before {
+	content: "\"";
+}
+
+.keyboard.shift [data-character="z"]::before {
+	content: "Z";
+}
+
+.keyboard.shift [data-character="x"]::before {
+	content: "X";
+}
+
+.keyboard.shift [data-character="c"]::before {
+	content: "C";
+}
+
+.keyboard.shift [data-character="v"]::before {
+	content: "V";
+}
+
+.keyboard.shift [data-character="b"]::before {
+	content: "B";
+}
+
+.keyboard.shift [data-character="n"]::before {
+	content: "N";
+}
+
+.keyboard.shift [data-character="m"]::before {
+	content: "M";
+}
+
+.keyboard.shift [data-character=","]::before {
+	content: "<";
+}
+
+.keyboard.shift [data-character="."]::before {
+	content: ">";
+}
+
+.keyboard.shift [data-character="/"]::before {
+	content: "?";
+}
+
+@media screen and (max-width: 600px) {
+  :root {
+    --keyboard-key-size: 12px;
+  }
+}
