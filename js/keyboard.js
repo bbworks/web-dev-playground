@@ -251,29 +251,30 @@
     const value = originalValue % totalNumberOfColors;
     const numberOfColorSequences = 6;
     const colorSequenceLength = totalNumberOfColors/numberOfColorSequences;
+    const colorSequenceNumber = Math.floor(value/colorSequenceLength);
+    const modulus = value%colorSequenceLength;
+
     const colorCodes = {
-      red: [255,-1,0,0,1,255],
-      green: [0,0,1,255,255,-1],
-      blue: [1,255,255,-1,0,0],
+      red: [255,255-modulus,0,0,modulus,255],
+      green: [0,0,modulus,255,255,255-modulus],
+      blue: [modulus,255,255,255-modulus,0,0],
     };
-    let colorSequenceNumber = Math.floor(value/colorSequenceLength);
-    let modulus = value%colorSequenceLength;
+
     const color = {
       red: null,
       green: null,
       blue: null,
     };
+
     for (let colorName in color) {
       const colorValue = colorCodes[colorName][colorSequenceNumber];
-      color[colorName] = (
-        colorValue === 255 ? 255 : (
-          colorValue === 0 ? 0 : (
-            Math.abs((modulus + (256 * colorValue)) % 256)
-          )
-        )
-      );
+      color[colorName] = colorValue;
     }
-    return `rgb(${color.red},${color.green},${color.blue})`;
+
+    const rgbValue = `rgb(${color.red},${color.green},${color.blue})`;
+
+    /*DEBUG*/ //console.log(value, rgbValue);
+    return rgbValue;
   };
 
   const setBoxShadowColor = function(keyboardKeyClassName, value) {
