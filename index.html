@@ -4,6 +4,12 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="This is just a page where I test my skils.">
     <title>Bradley Biera | Web Dev Playground</title>
+
+    <!-- FONT AWESOME -->
+    <!-- NOTE: Import Font Awesome first, so we can override the formating of their icons -->
+    <script src="https://kit.fontawesome.com/4849833081.js" crossorigin="anonymous"></script>
+
+    <!-- STYLESHEETS -->
     <link type="text/css" rel="stylesheet" href="css/main.css">
     <link type="text/css" rel="stylesheet" href="css/loading.css">
     <link type="text/css" rel="stylesheet" href="css/clock.css">
@@ -11,7 +17,7 @@
     <link type="text/css" rel="stylesheet" href="css/codeRenderer.css">
     <link type="text/css" rel="stylesheet" href="css/cards.css">
     <link type="text/css" rel="stylesheet" href="css/keyboard.css">
-    <script src="https://kit.fontawesome.com/4849833081.js" crossorigin="anonymous"></script>
+    <link type="text/css" rel="stylesheet" href="css/signIn.css">
   </head>
   <body>
     <section class="playground-section">
@@ -233,6 +239,50 @@
         </div>
       </div>
     </section>
+    <section class="playground-section">
+      <div class="playground-title-container">
+        <h2 class="playground-title">Sign In Admin Panel</h2>
+        <h4 class="playground-type">HTML Forms, Javascript</h4>
+      </div>
+      <div class="playground-content">
+        <div class="sign-in-container">
+          <form id="sign-in-form" class="panel-container display" action="" method="POST" onsubmit="signIn.authenticate();">
+            <div class="sign-in-form-header">
+              <h3 class="sign-in-form-heading">Sign In</h3>
+              <p id="sign-in-form-error">The username or password is incorrect.</p>
+            </div>
+            <label for="username" class="sign-in-component sign-in-label">Username</label>
+            <input id="sign-in-username" class="sign-in-component sign-in-input" type="text" name="username" tabindex="1">
+            <label for="password" class="sign-in-component sign-in-label">Password</label>
+            <input id="sign-in-password" class="sign-in-component sign-in-input" type="password" name="password" tabindex="2">
+            <input class="sign-in-component sign-in-button" type="submit" value="Log In" tabindex="3">
+            <div id="sign-in-loading-container">
+              <i class="sign-in-loading-circle fas fa-spinner"></i>
+            </div>
+          </form>
+          <div id="logged-in-dashboard" class="panel-container">
+            <h3 class="logged-in-heading">Account</h3>
+            <div class="logged-in-photo-container">
+              <img class="logged-in-photo fas fa-user" src="https://image.shutterstock.com/image-vector/social-media-avatar-user-icon-260nw-1061793911.jpg" alt="Profile photo" />
+              <button class="logged-in-photo-edit">Edit</button>
+            </div>
+            <div class="logged-in-top-container">
+              <input id="logged-in-name-first" class="logged-in-component logged-in-input disabled" type="text" placeholder="First name" tabindex="1" readonly data-field="nameFirst"><i class="fas fa-edit logged-in-input-edit" data-input="logged-in-name-first" onclick="signIn.editField(event);"></i
+              ><input id="logged-in-name-last" class="logged-in-component logged-in-input disabled" type="text" placeholder="Last name" tabindex="2" readonly data-field="nameLast"><i class="fas fa-edit logged-in-input-edit" data-input="logged-in-name-last" onclick="signIn.editField(event);"></i>
+            </div>
+            <div class="logged-in-bottom-container">
+              <input id="logged-in-phone" class="logged-in-component logged-in-input disabled" type="tel" pattern="([0-9]{3}) [0-9]{3}-[0-9]{4}" placeholder="(###) ###-####" tabindex="3" readonly data-field="phoneNumber"><i class="fas fa-edit logged-in-input-edit" data-input="logged-in-phone" onclick="signIn.editField(event);"></i
+              ><input id="logged-in-email" class="logged-in-component logged-in-input disabled" type="email" pattern=".+@.+.com" placeholder="Email Address" tabindex="4" readonly data-field="emailAddress"><i class="fas fa-edit logged-in-input-edit" data-input="logged-in-email" onclick="signIn.editField(event);"></i
+              ><input id="logged-in-address-street" class="logged-in-component logged-in-input disabled" type="text" placeholder="Street" tabindex="5" readonly data-field="addressStreet"><i class="fas fa-edit logged-in-input-edit" data-input="logged-in-address-street" onclick="signIn.editField(event);"></i
+              ><input id="logged-in-address-city" class="logged-in-component logged-in-input disabled" type="text" placeholder="City" tabindex="6" readonly data-field="addressCity"><i class="fas fa-edit logged-in-input-edit" data-input="logged-in-address-city" onclick="signIn.editField(event);"></i
+              ><input id="logged-in-address-state" class="logged-in-component logged-in-input disabled" type="text" placeholder="State" tabindex="7" readonly data-field="addressState"><i class="fas fa-edit logged-in-input-edit" data-input="logged-in-address-state" onclick="signIn.editField(event);"></i
+              ><input id="logged-in-address-zip" class="logged-in-component logged-in-input disabled" type="number" placeholder="Zip" tabindex="8" readonly data-field="addressZipCode"><i class="fas fa-edit logged-in-input-edit" data-input="logged-in-address-zip" onclick="signIn.editField(event);"></i>
+            </div>
+            <button class="sign-in-button log-out-button" onclick="signIn.logout();">Log Out</button>
+          </div>
+        </div>
+      </div>
+    </section>
     <div id="color-picker-display" class="drawing-interface-menu-keep-open"></div>
   </body>
   <script type="text/javascript" src="lib/dompurify/dist/purify.js"></script>
@@ -241,4 +291,5 @@
   <script type="text/javascript" src="js/codeRenderer.js"></script>
   <script type="text/javascript" src="js/cards.js"></script>
   <script type="text/javascript" src="js/keyboard.js"></script>
+  <script type="text/javascript" src="js/signIn.js"></script>
 </html>

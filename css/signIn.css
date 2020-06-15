@@ -1,0 +1,205 @@
+button, input[type="submit"] {
+  cursor: pointer;
+}
+
+.sign-in-container {
+  background-color: lightblue;
+  padding: 1em;
+}
+
+.panel-container {
+  position: relative;
+  display: none;
+  width: 18em;
+  background-color: rgba(255,255,255,0.8);
+  border: 1px solid lightgray;
+  border-radius: 1em;
+  padding: 1em 2em;
+  margin: 0 auto;
+}
+
+.panel-container.display {
+  display: block;
+}
+
+#sign-in-form {
+  animation: sign-in-float 2s linear infinite normal both;
+}
+
+#sign-in-form.focus {
+  animation: none;
+}
+
+.sign-in-form-header {
+  height: 4em;
+}
+
+.sign-in-form-heading {
+  font-size: 1.5em;
+  margin-bottom: 0.25em;
+}
+
+#sign-in-form-error {
+  color: red;
+  font-size: 0.75em;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+
+.sign-in-component {
+  display: block;
+}
+
+.sign-in-label {
+  color: rgb(100,100,100);
+  width: 100%;
+  margin-bottom: 0.25em;
+}
+
+.sign-in-input {
+  border: 0.5px solid gray;
+  border-radius: 0.25em;
+  margin-bottom: 1em;
+  width: 100%;
+}
+
+.sign-in-button {
+  color: white;
+  background-color: rgb(100,100,100);
+  border: none;
+  border-radius: 0.5em;
+  padding: 0.5em 1em;
+}
+
+.sign-in-submit:hover {
+  background-color: rgb(75,75,75);
+}
+
+@keyframes sign-in-float {
+  25% {transform: translateY(1%);}
+  75% {transform: translateY(-1%);}
+}
+
+#sign-in-loading-container {
+  position: absolute;
+  display: none;
+  padding-top: 6em;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+  border-radius: 1em;
+  z-index: 1;
+}
+
+.sign-in-loading-circle {
+  display: block;
+  color: white;
+  font-size: 1.5em;
+  width: 1em;
+  margin: 0 auto;
+  animation: sign-in-loading-circle-spin 1s linear infinite normal both;
+}
+
+@keyframes sign-in-loading-circle-spin {
+  0% {transform: rotate(0);}
+  100% {transform: rotate(360deg);}
+}
+
+/*.logged-in-dashboard*/
+
+.logged-in-heading {
+  font-size: 1.5em;
+  margin-bottom: 0.25em;
+}
+
+.logged-in-photo-container {
+  width: 3em;
+  height: 3em;
+  border: 2px solid gray;
+  border-radius: 50%;
+  margin-bottom: 0.5em;
+  float: left;
+  overflow: hidden;
+}
+
+.logged-in-photo {
+  position: relative;
+  bottom: 10%;
+  width: 100%;
+  height: 100%;
+}
+
+.logged-in-photo-edit {
+  position: relative;
+  bottom: 30%;
+  background-color: lightgray;
+  border: none;
+  width: 100%;
+  height: 50%;
+  font-size: 0.5em;
+  padding: 0;
+  padding-bottom: 20%;
+}
+
+.logged-in-input {
+  width: 100%;
+  background-color: transparent;
+  border: 2px solid lightblue;
+  border-radius: 0.25em;
+  background-color: white;
+}
+
+.logged-in-input.disabled {
+  border: none;
+  background: none;
+  cursor: auto;
+}
+
+.logged-in-input-edit {
+  position: relative;
+  display: none;
+  right: 1em;
+  width: 0;
+  border-radius: 0.25em;
+  cursor: pointer;
+}
+
+.logged-in-input + .logged-in-input-edit {
+  display: none;
+}
+
+.logged-in-input.disabled:hover + .logged-in-input-edit, .logged-in-input.disabled + .logged-in-input-edit:hover {
+  display: inline-block;
+}
+
+.logged-in-top-container {
+  width: 70%;
+  float: left;
+  margin-left: 1em;
+}
+
+.logged-in-bottom-container {
+  width: 70%;
+  clear: both;
+}
+
+.log-out-button {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+}
+
+#logged-in-address-city {
+  width: 45%;
+}
+
+#logged-in-address-state {
+  width: 15%;
+}
+
+#logged-in-address-zip {
+  width: 40%;
+}
